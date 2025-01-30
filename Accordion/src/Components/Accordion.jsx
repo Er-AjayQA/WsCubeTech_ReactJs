@@ -3,12 +3,8 @@ import accordData from "../../AccordData.js";
 import { AccordCard } from "./AccordCard.jsx";
 
 export const Accordion = () => {
-  const [accord, setAccord] = useState(accordData);
+  const [accord, setAccord] = useState(accordData.length > 0 ? accordData : []);
   const [displayId, setDisplayId] = useState(accord[0].id);
-
-  function handleAccordion(id) {
-    setDisplayId((prevId) => (prevId === id ? "" : id));
-  }
 
   return (
     <section className="py-4">
@@ -22,8 +18,8 @@ export const Accordion = () => {
                   <AccordCard
                     accordContent={item}
                     key={item.id}
-                    handleAccordShow={handleAccordion}
-                    displayAccord={displayId}
+                    setDisplayId={setDisplayId}
+                    displayId={displayId}
                   />
                 );
               })}
